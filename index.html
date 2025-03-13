@@ -225,12 +225,16 @@
       <div id="method-carousel" class="carousel results-carousel">
         <div class="item">
           <img class="small-image" src="static/images/Data_Pipeline.jpg" alt="Data Pipeline"/>
+          <p class="image-caption">The pipeline of multi-layer data preparation. We utilize GPT-4 to process a randomly selected base prompt, structuring it into a background prompt and multiple foreground prompts. After generating the image using a diffusion model, we apply an open-set detection model GroundingDINO to identify the positions of the foreground objects and use the DepthAnything model to obtain a depth map. Based on the depth order, we sequentially extract the foreground layers and fill in the missing areas with an inpainting model.</p>
         </div>
         <div class="item">
-          <img  style="width: 400px; height: auto; display: block; margin: 0 auto;" src="static/images/Supp_DataPipeline.jpg" alt="Data Pipeline"/>
+          <img  style="width: 300px; height: auto; display: block; margin: 0 auto;" src="static/images/Supp_DataPipeline.jpg" alt="Data Pipeline"/>
+          <p class="image-caption">The pipeline of multi-layer data preparation.</p>
         </div>
         <div class="item">
           <img class="small-image" src="static/images/Visual_2.jpg" alt="Data Pipeline"/>
+          <p class="image-caption">Multi-layer Dataset: Each image consists of a multi-layer structure, including a background and multiple foreground objects,
+            with each foreground object represented as a transparent layer.</p>
         </div>
       </div>
     </div>
