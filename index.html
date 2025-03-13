@@ -1,52 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-
-
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DreamLayer: Simultaneous Multi-Layer Generation via Diffusion Model</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
 
+  <!-- 引入 Bulma CSS -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
+  <!-- 自定义样式 -->
+  <style>
+    /* 全局字体设置 */
+    body {
+      font-family: 'Times New Roman', Times, serif; /* 全局优雅字体 */
+    }
+
+    /* 标题字体美化 */
+    h1.title, h2.title {
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+    }
+
+    h1.title {
+      font-size: 3rem; /* 主标题字体加大 */
+    }
+
+    h2.title {
+      font-size: 2.5rem; /* 副标题字体调优 */
+      margin-bottom: 1.5rem;
+    }
+
+    /* Abstract 内容美化 */
+    .abstract-content {
+      font-size: 1.25rem; /* 调整字体大小 */
+      line-height: 1.8; /* 增加行高 */
+      text-align: justify; /* 两端对齐 */
+      color: #444; /* 柔和的字体颜色 */
+      margin-top: 1rem;
+    }
+
+    /* 作者信息美化 */
+    .publication-authors {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #555;
+      text-align: center;
+    }
+
+    .author-block a {
+      color: #007BFF; /* 链接颜色 */
+      text-decoration: none;
+    }
+
+    .author-block a:hover {
+      text-decoration: underline; /* 鼠标悬停加下划线 */
+    }
+
+    /* 视频样式 */
+    .video-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px; /* 视频圆角 */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 视频阴影 */
+    }
+
+    /* 图片轮播容器样式 */
+    .carousel {
+      display: flex; /* 使用 flexbox 布局 */
+      justify-content: center; /* 图片居中 */
+      align-items: center; /* 垂直居中 */
+      gap: 1rem; /* 图片之间的间距 */
+      overflow-x: auto; /* 支持水平滚动 */
+      padding: 1rem 0; /* 上下内边距 */
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none; /* 隐藏滚动条 */
+    }
+
+    /* 图片样式 */
+    .carousel .item {
+      flex: 0 0 auto; /* 保证图片等宽 */
+      width: 300px; /* 固定宽度 */
+      height: 200px; /* 固定高度 */
+      display: flex; /* flex 居中 */
+      justify-content: center; /* 水平居中 */
+      align-items: center; /* 垂直居中 */
+      background-color: #f4f4f4; /* 图片背景色 */
+      border-radius: 10px; /* 圆角 */
+      overflow: hidden; /* 隐藏边界外内容 */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* 动画效果 */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 图片阴影 */
+    }
+
+    .carousel .item img {
+      max-width: 100%; /* 图片宽度自动缩放 */
+      max-height: 100%; /* 图片高度自动缩放 */
+      object-fit: cover; /* 图片裁剪方式 */
+    }
+
+    /* 鼠标悬停效果 */
+    .carousel .item:hover {
+      transform: scale(1.05); /* 放大效果 */
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* 增强阴影 */
+    }
+  </style>
 </head>
 <body>
 
-
+  <!-- 主标题 -->
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
@@ -54,198 +122,143 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">DreamLayer: Simultaneous Multi-Layer Generation via Diffusion Model</h1>
             <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
+              <!-- 作者信息 -->
               <span class="author-block">
-                <a href="" target="_blank">Junjia Huang</a><sup>*</sup>,</span>
+                <a href="#" target="_blank">Junjia Huang</a><sup>*</sup>,</span>
               <span class="author-block">
-                <a href="" target="_blank">Pengxiang Yan</a><sup>*</sup>,</span>
+                <a href="#" target="_blank">Pengxiang Yan</a><sup>*</sup>,</span>
               <span class="author-block">
-                <a href="" target="_blank">Jinhang Cai</a>,</span>
+                <a href="#" target="_blank">Jinhang Cai</a>,</span>
               <span class="author-block">
-                <a href="" target="_blank">Jiyang Liu</a>,</span>
+                <a href="#" target="_blank">Jiyang Liu</a>,</span>
               <span class="author-block">
-                <a href="" target="_blank">Xu Zhao</a>,</span>
-            </div>
-            <div class="is-size-5 publication-authors">
+                <a href="#" target="_blank">Xu Zhao</a>,</span>
+              <br>
               <span class="author-block">
-                <a href="" target="_blank">Yitong Wang</a>,</span>
+                <a href="#" target="_blank">Yitong Wang</a>,</span>
               <span class="author-block">
-                <a href="" target="_blank">Xinglong Wu</a>,</span>
+                <a href="#" target="_blank">Xinglong Wu</a>,</span>
               <span class="author-block">
-                <a href="" target="_blank">Guanbin Li†</a></span>
-            </div>
-
-
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block">ByteDance Intelligent Creation<br></span>
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- Arxiv PDF link -->
-                      <span class="link-block">
-                        <a href="" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          🤗
-                        </span>
-                        <span>Dataset (Coming Soon)</span>
-                      </a>
-                    </span>
-
-                  <!-- Github link -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code (Coming Soon)</span>
-                  </a>
-                </span>
-
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+                <a href="#" target="_blank">Guanbin Li†</a></span>
+              <p>ByteDance Intelligent Creation</p>
+              <p><small><sup>*</sup> Indicates Equal Contribution</small></p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/DreamLayer_V2.mp4"
-        type="video/mp4">
+  <!-- 视频部分 -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop video-container">
+      <video controls muted autoplay loop>
+        <source src="static/videos/DreamLayer_V2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
       </video>
     </div>
-  </div>
-</section>
-<!-- End teaser video -->
+  </section>
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Text-driven image generation using diffusion models has recently gained significant attention. To enable more flexible image manipulation and editing, recent research has expanded from single image generation to transparent layer generation and multi-layer compositions. However, existing approaches often fail to provide a thorough exploration of multi-layer structures,  leading to inconsistent inter-layer interactions, such as occlusion relationships, spatial layout, and shadowing. In this paper, we introduce DreamLayer, a novel framework that enables coherent text-driven generation of multiple image layers, by explicitly modeling the relationship between transparent foreground and background layers. DreamLayer incorporates three key components, i.e.,  Context-Aware Cross-Attention (CACA) for global-local information exchange, Layer-Shared Self-Attention (LSSA)  for establishing robust inter-layer connections, and Information Retained Harmonization (IRH) for refining fusion details at the latent level.
-            By leveraging a coherent full-image context, DreamLayer builds inter-layer connections through attention mechanisms and applies a harmonization step to achieve seamless layer fusion. 
-            To facilitate research in multi-layer generation, we construct a high-quality, diverse multi-layer dataset including $400k$ samples. Extensive experiments and user studies demonstrate that DreamLayer generates more coherent and well-aligned layers, with broad applicability, including latent-space image editing and image-to-layer decomposition.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-
-<!-- Image carousel -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="columns is-centered has-text-centered">
-      <!-- 标题 -->
-      <h2 class="title is-3">Framework</h2>
-      <div class="container">
-        <!-- 图片轮播 -->
-        <div id="method-carousel" class="carousel results-carousel">
-          <div class="item">
-            <img src="static/images/Framework_1.jpg" alt="Framework Image 1"/>
-          </div>
-          <div class="item">
-            <img src="static/images/Framework_2.jpg" alt="Framework Image 2"/>
-          </div>
-          <div class="item">
-            <img src="static/images/Data_Pipeline.jpg" alt="Data Pipeline"/>
+  <!-- Abstract Section -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="abstract-content">
+            <p>
+              Text-driven image generation using diffusion models has recently gained significant attention. To enable more flexible image manipulation and editing, recent research has expanded from single image generation to transparent layer generation and multi-layer compositions. However, existing approaches often fail to provide a thorough exploration of multi-layer structures, leading to inconsistent inter-layer interactions, such as occlusion relationships, spatial layout, and shadowing.
+            </p>
+            <p>
+              In this paper, we introduce DreamLayer, a novel framework that enables coherent text-driven generation of multiple image layers, by explicitly modeling the relationship between transparent foreground and background layers. DreamLayer incorporates three key components, i.e., Context-Aware Cross-Attention (CACA) for global-local information exchange, Layer-Shared Self-Attention (LSSA) for establishing robust inter-layer connections, and Information Retained Harmonization (IRH) for refining fusion details at the latent level.
+            </p>
+            <p>
+              By leveraging a coherent full-image context, DreamLayer builds inter-layer connections through attention mechanisms and applies a harmonization step to achieve seamless layer fusion. To facilitate research in multi-layer generation, we construct a high-quality, diverse multi-layer dataset including $400k$ samples. Extensive experiments and user studies demonstrate that DreamLayer generates more coherent and well-aligned layers, with broad applicability, including latent-space image editing and image-to-layer decomposition.
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- End image carousel -->
+  </section>
 
+  <!-- Framework Section -->
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Framework</h2>
+        <div class="container">
+          <div id="method-carousel" class="carousel results-carousel">
+            <div class="item">
+              <img src="static/images/Framework_1.jpg" alt="Framework Image 1">
+            </div>
+            <div class="item">
+              <img src="static/images/Framework_2.jpg" alt="Framework Image 2">
+            </div>
+            <div class="item">
+              <img src="static/images/Data_Pipeline.jpg" alt="Data Pipeline">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-<!-- Image carousel -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Dataset Visulization</h2>
-    <div class="container">
-      <div id="method-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/Visual_supp_two_dataset.jpg" alt="MY ALT TEXT"/>
+  <!-- Dataset Visualization Section -->
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <h2 class="title is-3">Dataset Visualization</h2>
+        <div class="container">
+          <div id="dataset-carousel" class="carousel results-carousel">
+            <div class="item">
+              <img src="static/images/Visual_supp_two_dataset.jpg" alt="Dataset Image 1">
+            </div>
+            <div class="item">
+              <img src="static/images/Visual_supp_three_dataset.jpg" alt="Dataset Image 2">
+            </div>
+            <div class="item">
+              <img src="static/images/Visual_supp_four_dataset.jpg" alt="Dataset Image 3">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/Visual_supp_three_dataset.jpg" alt="MY ALT TEXT"/>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/Visual_supp_four_dataset.jpg" alt="MY ALT TEXT"/>
-      </div>
-      <div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+    </div>
+  </section>
 
 
 
 <!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
-    </div>
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>BibTex Code Here</code></pre>
+  </div>
 </section>
 <!--End BibTex citation -->
 
 
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
+<footer class="footer">
+<div class="container">
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div class="content">
 
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
+        <p>
+          This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+          You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+          Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
 
-        </div>
       </div>
     </div>
   </div>
+</div>
 </footer>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
-    <!-- End of Statcounter Code -->
 
-  </body>
-  </html>
+
+
+
+</body>
+</html>
